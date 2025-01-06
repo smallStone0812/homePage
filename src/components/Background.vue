@@ -4,11 +4,11 @@
       <img v-show="store.imgLoadStatus" :src="bgUrl" class="bg" alt="cover" @load="imgLoadComplete"
         @error.once="imgLoadError" @animationend="imgAnimationEnd" />
     </Transition>
-    <Transition name="fade" mode="out-in">
+    <!-- <Transition name="fade" mode="out-in">
       <a v-if="store.backgroundShow" class="down" :href="bgUrl" target="_blank">
         查看原图
       </a>
-    </Transition>
+    </Transition> -->
   </div>
 </template>
 
@@ -59,9 +59,9 @@ onBeforeUnmount(() => { });
   transition: 0.25s;
   z-index: -1;
 
-  &.show {
-    z-index: 1;
-  }
+  // &.show {
+  //   z-index: 1;
+  // }
 
   .bg {
     position: absolute;

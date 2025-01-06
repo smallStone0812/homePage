@@ -29,5 +29,6 @@ export default defineConfig({
   server: {
     proxy: proxyConfig,
     host: "0.0.0.0",
+    port: 8000,
   },
 });

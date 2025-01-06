@@ -7,6 +7,7 @@ export const mainStore = defineStore("stores", {
      backgroundShow: true,
      imgLoadStatus:false,
      coverType: '0',
+     setOpenState: false, // 设置页面开启状态
     };
   },
   getters: {
