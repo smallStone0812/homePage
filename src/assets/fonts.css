@@ -1,8 +1,13 @@
 @font-face {
-    font-family: 'Nabla';
-    src: url('@/assets/textFonts/Nabla_Regular.woff2') format('woff2'),
-         url('@/assets/textFonts/Nabla_Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
+  font-family: "Nabla";
+  src: url("@/assets/textFonts/Nabla_Regular.woff2") format("woff2"),
+    url("@/assets/textFonts/Nabla_Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "UnidreamLED";
+  font-display: swap;
+  src: url("@/assets/textFonts/UnidreamLED.ttf") format("truetype");
+}

@@ -1,9 +1,17 @@
 import { h } from "vue";
 import { SpaCandle } from "@icon-park/vue-next";
 import dayjs from "dayjs";
-
+export interface CurrentTime {
+  year: number;
+  month: string | number;
+  day: string | number;
+  hour: string | number;
+  minute: string | number;
+  second: string | number;
+  weekday: string;
+}
 // 时钟
-export const getCurrentTime = () => {
+export const getCurrentTime = ():CurrentTime => {
   let time = new Date();
   let year = time.getFullYear();
   let month = time.getMonth() + 1 < 10 ? "0" + (time.getMonth() + 1) : time.getMonth() + 1;
