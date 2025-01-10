@@ -41,7 +41,7 @@ const loadComplete = () => {
   left: 0;
   width: 100%;
   height: 100%;
-
+  background: #333;
   .container {
     max-width: 1200px;
     height: 100vh;
@@ -63,7 +63,7 @@ const loadComplete = () => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      font-family: Nabla;
+      // font-family: Nabla;
       font-size: 28px;
       color: #fff;
     }

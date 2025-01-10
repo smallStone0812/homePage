@@ -20,6 +20,7 @@ import { mainStore } from '@/stores/index.ts';
 
 const store = mainStore();
 const bgUrl = ref('https://bing.img.run/uhd.php');
+// const bgUrl = ref('');
 // const imgTimeout = ref();
 const emit = defineEmits(["loadComplete"]);
 
@@ -41,6 +42,7 @@ const imgLoadError = () => {
   ElMessage({
     message: "壁纸加载失败，已临时切换回默认",
   });
+  emit("loadComplete");
 };
 
 

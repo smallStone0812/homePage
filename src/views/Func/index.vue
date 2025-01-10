@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
     .el-row {
         width: 100%;
         height: 100%;
-
+        margin: 0 !important;
         .el-col:nth-child(1) {
             padding-right: 10px;
             padding-left: 0 !important;

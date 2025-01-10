@@ -8,6 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Background: typeof import('./src/components/Background.vue')['default']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElRow: typeof import('element-plus/es')['ElRow']
     Hitokoto: typeof import('./src/components/Hitokoto.vue')['default']

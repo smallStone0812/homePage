@@ -11,3 +11,9 @@
   font-display: swap;
   src: url("@/assets/textFonts/UnidreamLED.ttf") format("truetype");
 }
+@font-face {
+  font-family: "g Gerak";
+  font-style: normal;
+  font-weight: 400;
+  src: url("@/assets/textFonts/Gerak-YznAv.otf") format("opentype");
+}
