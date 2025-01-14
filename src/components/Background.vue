@@ -1,53 +1,67 @@
 <template>
-  <div :class="store.backgroundShow ? 'cover show' : 'cover'">
+  <div class="cover">
     <Transition name="fade" mode="out-in">
-      <img v-show="store.imgLoadStatus" :src="bgUrl" class="bg" alt="cover" @load="imgLoadComplete"
-        @error.once="imgLoadError" @animationend="imgAnimationEnd" />
+      <!-- <img  :src="imgData.bgUrl"  alt="" /> -->
+      <el-image class="bg" v-show="store.imgLoadStatus"  :src="imgData.bgUrl" fit="fit" @load="imgLoad" />
     </Transition>
-    <!-- <Transition name="fade" mode="out-in">
-      <a v-if="store.backgroundShow" class="down" :href="bgUrl" target="_blank">
-        查看原图
-      </a>
-    </Transition> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch, defineEmits } from "vue";
-// import { getBackGroundImg } from "@/api/Background"
+import { ref, onMounted, onBeforeUnmount, watch, defineEmits, reactive, onBeforeMount } from "vue";
 import { mainStore } from '@/stores/index.ts';
+import { getBackGroundImg, getBackGroundImgDetail } from "@/api/Background"
 // import { Error } from "@icon-park/vue-next";
-
+const bingApi = import.meta.env.VITE_Background_BING;
 const store = mainStore();
-const bgUrl = ref('https://bing.img.run/uhd.php');
-// const bgUrl = ref('');
-// const imgTimeout = ref();
-const emit = defineEmits(["loadComplete"]);
-
+const imgData = reactive({
+  bgUrl: "",
+  alt: "",
+})
 // 图片加载完成
-const imgLoadComplete = () => {
-  store.setImgLoadStatus(true);
-};
+function imgLoad(){
+  console.log('图片加载完成');
+  store.setImgLoadStatus(true)
+}
+const emit = defineEmits(["loadComplete"]);
+async function getImgSrcFun() {
+  const data = await getBackGroundImg()
+  // const dataDetail = await getBackGroundImgDetail()
+  // const data = {
+  //   "images": [
+  //     {
+  //       "startdate": "20250113",
+  //       "fullstartdate": "202501131600",
+  //       "enddate": "20250114",
+  //       "url": "/th?id=OHR.CadizSpain_ZH-CN0032172399_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+  //       "urlbase": "/th?id=OHR.CadizSpain_ZH-CN0032172399",
+  //       "copyright": "Village of Zahara de la Sierra, Cádiz province, Spain (© SEN LI/Getty Images)",
+  //       "copyrightlink": "https://www.bing.com/search?q=%E8%90%A8%E9%98%BF%E6%8B%89%C2%B7%E5%BE%B7%E6%8B%89%E8%B0%A2%E6%8B%89&form=hpcapt&mkt=zh-cn",
+  //       "title": "宁静之地",
+  //       "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20250113_CadizSpain%22&FORM=HPQUIZ",
+  //       "wp": true,
+  //       "hsh": "281d51d6434aba29274dbf3434ddf2c2",
+  //       "drk": 1,
+  //       "top": 1,
+  //       "bot": 1,
+  //       "hs": []
+  //     }
+  //   ],
+  //   "tooltips": {
+  //     "loading": "正在加载...",
+  //     "previous": "上一个图像",
+  //     "next": "下一个图像",
+  //     "walle": "此图片不能下载用作壁纸。",
+  //     "walls": "下载今日美图。仅限用作桌面壁纸。"
+  //   }
+  // }
+  imgData.bgUrl = bingApi + data.images[0].url
+  imgData.alt = data.images[0].title
+}
 
-// // 图片动画完成
-const imgAnimationEnd = () => {
-  console.log("壁纸加载且动画完成");
-  // 加载完成事件
-  emit("loadComplete");
-};
-
-// // 图片显示失败
-const imgLoadError = () => {
-  console.error("壁纸加载失败：", bgUrl.value);
-  ElMessage({
-    message: "壁纸加载失败，已临时切换回默认",
-  });
-  emit("loadComplete");
-};
-
-
-onMounted(() => { });
-
+onBeforeMount(async () => {
+  await getImgSrcFun()
+});
 onBeforeUnmount(() => { });
 </script>
 
@@ -59,12 +73,8 @@ onBeforeUnmount(() => { });
   width: 100%;
   height: 100%;
   transition: 0.25s;
-  z-index: -1;
 
-  // &.show {
-  //   z-index: 1;
-  // }
-
+  // z-index: -1;
   .bg {
     position: absolute;
     left: 0;
@@ -74,55 +84,9 @@ onBeforeUnmount(() => { });
     object-fit: cover;
     backface-visibility: hidden;
     filter: blur(10px) brightness(0.99999);
-    transition:  filter 0.3s,  transform 0.3s;
+    transition: filter 0.3s, transform 0.3s;
     animation: fade-blur-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     animation-delay: 0.45s;
-  }
-
-  .gray {
-    opacity: 1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.5) 100%),
-      radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.3) 166%);
-
-    transition: 1.5s;
-
-    &.hidden {
-      opacity: 0;
-      transition: 1.5s;
-    }
-  }
-
-  .down {
-    font-size: 16px;
-    color: white;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    right: 0;
-    // margin: 0 auto;
-    display: block;
-    padding: 10px 5px;
-    border-radius: 8px;
-    background-color: #00000030;
-    width: 120px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      transform: scale(1.05);
-      background-color: #00000060;
-    }
-
-    &:active {
-      transform: scale(1);
-    }
   }
 }
 </style>

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4807264 */
-  src: url('iconfont.woff2?t=1736489549039') format('woff2'),
-       url('iconfont.woff?t=1736489549039') format('woff'),
-       url('iconfont.ttf?t=1736489549039') format('truetype');
+  src: url('iconfont.woff2?t=1736838713700') format('woff2'),
+       url('iconfont.woff?t=1736838713700') format('woff'),
+       url('iconfont.ttf?t=1736838713700') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-santiaogang:before {
+  content: "\e620";
 }
 
 .icon-fu-right:before {

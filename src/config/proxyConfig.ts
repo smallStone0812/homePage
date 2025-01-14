@@ -1,5 +1,5 @@
 const proxyServices = {
-  "/backGroundBing_image": { target: "https://bing.img.run/" },
+  "/backGroundBing_image": { target: "https://cn.bing.com/" },
   "/Hitokoto": { target: "https://v1.hitokoto.cn/" },
   "/Weather": { target: "https://restapi.amap.com/v3/weather/weatherInfo" },
 };

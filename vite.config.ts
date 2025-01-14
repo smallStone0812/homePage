@@ -30,5 +30,7 @@ export default defineConfig({
     proxy: proxyConfig,
     host: "0.0.0.0",
     port: 8000,
+    hmr: true,  // 开启热更新
+
   },
 });

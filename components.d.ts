@@ -11,6 +11,7 @@ declare module 'vue' {
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCol: typeof import('element-plus/es')['ElCol']
+    ElImage: typeof import('element-plus/es')['ElImage']
     ElRow: typeof import('element-plus/es')['ElRow']
     Hitokoto: typeof import('./src/components/Hitokoto.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']

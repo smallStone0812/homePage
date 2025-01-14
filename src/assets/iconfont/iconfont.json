@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18371688",
+      "name": "三条杠",
+      "font_class": "santiaogang",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
       "icon_id": "608170",
       "name": "引号",
       "font_class": "baojiaquotation",

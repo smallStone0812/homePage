@@ -1,5 +1,5 @@
 <template>
-    <div class="function">
+    <div :class="store.isPhone ? 'phoneFunction' : 'function'">
         <el-row :gutter="20">
             <el-col :span="12">
                 <div class="left">
@@ -34,6 +34,8 @@ import Hitokoto from "@/components/Hitokoto.vue";
 import weather from "@/components/weather.vue";
 import { getCurrentTime, type CurrentTime } from "@/utils/getTime";
 import { onMounted, ref, onBeforeUnmount } from "vue"
+import { mainStore } from "@/stores/index.ts";
+const store = mainStore();
 // 当前时间
 const currentTime = ref<CurrentTime>({
     year: 0,
@@ -73,6 +75,7 @@ onBeforeUnmount(() => {
         width: 100%;
         height: 100%;
         margin: 0 !important;
+
         .el-col:nth-child(1) {
             padding-right: 10px;
             padding-left: 0 !important;
@@ -95,6 +98,61 @@ onBeforeUnmount(() => {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+
+            .timeData-block {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .date-block {
+                    font-size: 1.1rem
+                }
+
+                .time-block {
+                    font-family: UnidreamLED;
+                    font-size: 3.25rem !important;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+.phoneFunction {
+    height: 165px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .el-row {
+        width: 100%;
+        height: 100%;
+        margin: 0 !important;
+
+        .el-col:nth-child(1) {
+            padding-right: 10px;
+            padding-left: 0 !important;
+        }
+
+        .el-col:nth-child(2) {
+            padding-left: 10px;
+            padding-right: 0 !important;
+        }
+
+        .left,
+        .right {
+            width: 100%;
+            height: 100%;
+        }
+
+        .right {
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
             .timeData-block {
                 display: flex;
                 flex-direction: column;

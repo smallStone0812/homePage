@@ -1,5 +1,5 @@
 <template>
-    <div class="homeLeft">
+    <div :class="store.isPhone ? 'phoneHomeLeft' : 'homeLeft'">
         <div class="logo">
             <!-- logg图标 -->
             <div class="logo-img">
@@ -26,24 +26,25 @@
                 </div>
             </div>
         </div>
-        <div class="socialContact">
+        <!-- <div class="socialContact">
             <div class="socialContact-li"></div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script setup lang='ts'>
 import { ref, } from "vue"
-
+import { mainStore } from "@/stores/index.ts";
+const store = mainStore();
 </script>
 
 <style lang="scss" scoped>
 .homeLeft {
     width: 100%;
     margin-right: 10px;
+
     .logo {
         display: flex;
-        // justify-content: space-evenly;
         align-items: flex-end;
 
         .logo-img {
@@ -74,12 +75,94 @@ import { ref, } from "vue"
         padding: 20px;
         margin-top: 20px;
         width: auto;
+
         .content {
             display: flex;
 
             .left {
                 display: flex;
                 align-items: self-start;
+
+                .icon-fu-left {
+                    font-size: 1rem;
+                }
+            }
+
+            .right {
+                display: flex;
+                align-items: self-end;
+
+                .icon-fu-right {
+                    font-size: 1rem;
+                }
+            }
+
+            .center {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+
+                .Hello {
+                    font-size: 1rem;
+                    font-family: 'g Gerak', sans-serif;
+                }
+
+                .message {
+                    // letter-spacing: ;
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}
+
+.phoneHomeLeft {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9;
+
+        .logo-img {
+            width: 5rem;
+            height: 5rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+                margin-right: 10px;
+            }
+
+            .icon-shitou {
+                font-size: 5rem;
+                // margin-right: 20px;
+            }
+        }
+
+        .logo-text {
+            font-size: 5rem;
+            font-family: 'g Gerak', sans-serif;
+            color: #fff;
+        }
+    }
+
+    .description {
+        cursor: pointer;
+        padding: 10px;
+        margin-top: 20px;
+        width: auto;
+
+        .content {
+            display: flex;
+
+            .left {
+                display: flex;
+
 
                 .icon-fu-left {
                     font-size: 1rem;
